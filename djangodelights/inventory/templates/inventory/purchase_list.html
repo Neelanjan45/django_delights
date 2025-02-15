@@ -1,3 +1,21 @@
-{% for purchase in purchase_list %}
-{{ purchase.pur_menu.menu_name }}
-{% endfor %}
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Purchased Menu Name</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for purchase in purchase_list %}
+            <tr>
+                <td>{{ purchase.pur_menu.menu_name }}</td>
+                <td>{{ purchase.pur_date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

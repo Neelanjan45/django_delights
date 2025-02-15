@@ -1,3 +1,21 @@
-{% for menuitem in menuitem_list %}
-{{ menuitem.menu_name }}
-{% endfor %}
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Menu Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for menuitem in menuitem_list %}
+            <tr>
+                <td>{{ menuitem.menu_name }}</td>
+                <td>{{ menuitem.menu_price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
