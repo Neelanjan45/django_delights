@@ -7,7 +7,16 @@ from .forms import IngredientCreateForm, MenuItemCreateForm, RecipeCreateForm
 
 def home(request):
     # Profit and revenue view
-    return render(request, "inventory/home.html")
+    ingredients = Ingredient.objects.all()
+    total_cost = 0
+    for ingredient in ingredients:
+        total_cost += ingredient.ing_quantity * ingredient.ing_unit_price
+
+    purchased = Purchase.objects.all()
+    total_revenue = 0
+    for purchase in purchased:
+        total_revenue += purchase.pur_menu.menu_price
+    return render(request, "inventory/home.html", context={"total_cost": round(total_cost, 2), "total_revenue": round(total_revenue, 2), "total_profit": round(total_revenue - total_cost, 2)})
 
 class IngredientList(ListView):
     model = Ingredient
