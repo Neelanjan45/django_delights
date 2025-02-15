@@ -8,6 +8,9 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.ing_name
+    
+    def get_absolute_url(self):
+        return "list"
 
 class MenuItem(models.Model):
     menu_name = models.CharField(max_length=100)
@@ -15,6 +18,9 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return f"{ self.menu_name } - { str(self.menu_price) }"
+    
+    def get_absolute_url(self):
+        return "list"
 
 class RecipeRequirement(models.Model):
     rec_menu = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
