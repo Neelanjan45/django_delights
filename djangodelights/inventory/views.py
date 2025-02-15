@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Ingredient, MenuItem, Purchase
-from .forms import IngredientCreateForm, MenuItemCreateForm
+from .models import Ingredient, MenuItem, Purchase, RecipeRequirement
+from .forms import IngredientCreateForm, MenuItemCreateForm, RecipeCreateForm
 
 def home(request):
     # Profit and revenue view
@@ -16,6 +16,11 @@ class IngredientList(ListView):
 class IngredientCreate(CreateView):
     model = Ingredient
     template_name = "inventory/ingredient_create_form.html"
+    form_class = IngredientCreateForm
+
+class IngredientUpdate(UpdateView):
+    model = Ingredient
+    template_name = "inventory/ingredient_update_form.html"
     form_class = IngredientCreateForm
 
 class IngredientDelete(DeleteView):
@@ -34,3 +39,8 @@ class MenuItemCreate(CreateView):
 class PurchaseList(ListView):
     model = Purchase
     template_name = "inventory/purchase_list.html"
+
+class RecipeRequirementCreate(CreateView):
+    model = RecipeRequirement
+    template_name = "inventory/recipe_create_form.html"
+    form_class = RecipeCreateForm
