@@ -1,3 +1,25 @@
-{% for ingredient in ingredient_list %}
-{{ ingredient.ing_name }}
-{% endfor %}
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Ingredient Name</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Price per Unit</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for ingredient in ingredient_list %}
+            <tr>
+                <td>{{ ingredient.ing_name }}</td>
+                <td>{{ ingredient.ing_quantity }}</td>
+                <td>{{ ingredient.ing_unit }}</td>
+                <td>{{ ingredient.ing_unit_price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
